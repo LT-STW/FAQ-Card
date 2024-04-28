@@ -1,0 +1,93 @@
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            min-height: 75px;
+            background-color: #2492B8;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            cursor: pointer;
+        }
+
+        .face {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .face.answer {
+            position: absolute;
+            top: 75px;  /* Positioned right below the question box */
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: height 0.3s ease;
+        }
+
+        .face.question {
+            height: 75px;
+            background: linear-gradient(40deg, #10607B 0%, #0A5670 45%, #003E52 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            font-size: 16px;  /* Responsive font size */
+        }
+
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='card'>
+            <div class='face question'>
+                <h2>Question</h2>
+            </div>
+            <div class='face answer'>
+                <div class='content'>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis finibus justo, quis volutpat enim elementum consequat. Vivamus blandit lacus eu mollis lobortis. Suspendisse sed auctor metus, eu sollicitudin arcu. Pellentesque pretium lacus et pulvinar faucibus. Vivamus pellentesque risus vitae odio feugiat lacinia. Sed eget consectetur velit. Donec blandit ultricies finibus. Curabitur cursus mi enim, nec iaculis elit gravida sit amet.
+
+Donec ut orci id tellus malesuada laoreet. Etiam eu libero nec magna condimentum commodo quis in libero. Donec viverra auctor commodo. Aliquam elementum lobortis finibus. Aenean sit amet luctus massa. Donec ligula felis, convallis non venenatis vel, tristique nec.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const answer = this.querySelector('.face.answer');
+                const questionHeight = this.querySelector('.face.question').offsetHeight;
+                const contentHeight = answer.querySelector('.content').scrollHeight;
+                const totalHeight = questionHeight + contentHeight + 20; // Extra padding
+                this.style.height = `${totalHeight}px`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.height = '75px'; // Reset to initial height
+            });
+        });
+    </script>
+</body>
